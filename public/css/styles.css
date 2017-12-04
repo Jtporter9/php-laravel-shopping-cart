@@ -1,0 +1,196 @@
+    html, body {
+        background-color: #fff;
+        font-family: 'segoe ui light', sans-serif;
+        height: 100vh;
+        margin: 0;
+    }
+
+    header {
+        background-color: red;
+    }
+
+    header .full-height {
+        height: 100vh;
+    }
+
+    header .flex-center {
+        display: flex;
+        justify-content: center;
+    }
+
+    header .position-ref {
+        position: relative;
+    }
+
+    header .top-right {
+        position: absolute;
+        right: 10px;
+        top: 18px;
+    }
+
+    .content {
+        text-align: center;
+    }
+
+    header .title {
+        font-size: 84px;
+    }
+    
+    header .links {
+        padding: 10px 0;
+    }
+
+    header .links > a {
+        color: black;
+        padding: 0 25px;
+        font-size: 18px;
+        font-weight: 600;
+        letter-spacing: .1rem;
+        text-decoration: none;
+        text-transform: uppercase;
+    }
+
+    header .links > a:hover {
+        color: white;
+    }
+
+    header .m-b-md {
+        margin-bottom: 10px;
+    }
+
+    .cart-counter {
+        background-color: black;
+        color:white;
+        padding:5px 10px;
+        margin:0 5px;
+        border-radius: 5px;
+    }
+
+    .container {
+        padding:2% 10%;
+        font-weight: bold;
+        text-align: center;
+    }
+
+    /* Products Styles */
+    .products-container {
+        background-color: rgb(236, 236, 236);
+        padding:5%;
+        border-radius: 3px;
+    }
+
+    .inner-container:after {
+        clear: both;
+        content: "";
+        display: table;
+    }
+
+    .product {
+        border: 1px solid gray;
+        border-radius: 3px;
+        margin:10px;
+        width:28.5%;
+        padding:10px;
+        background-color: white;
+        float: left;
+    }
+
+    .product a {
+        color: black;
+    }
+
+    .product a:hover{
+        color: gray;
+    }
+
+    .btn-blue {
+        padding: 10px 25px;
+        border:none;
+        border-radius: 3px;
+        text-transform: uppercase;
+        font-weight: bold;
+        background-color: rgb(50, 101, 177);
+        color: white;
+    }
+
+    .btn-blue:hover {
+        background-color: gray;
+        color:black;
+        cursor: pointer;
+    }
+
+    .btn-red {
+        padding: 10px 25px;
+        border:none;
+        border-radius: 3px;
+        text-transform: uppercase;
+        font-weight: bold;
+        background-color: rgb(177, 50, 56);
+        color: white;
+    }
+
+    .btn-red:hover {
+        background-color: gray;
+        color:black;
+        cursor: pointer;
+    }
+
+    .form-container {
+        background-color: rgb(236, 236, 236);
+        padding:5%;
+        border-radius: 3px;
+        text-align: left;
+    }
+
+    .form-container div{
+        margin:10px 0;
+    }
+
+    .form-container input {
+        width: 100%;
+        padding:10px;
+        font-size: 16px;
+    }
+
+    .cart-items {
+        background-color: white;
+        border-bottom: 1px solid gray;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding:10px;
+    }
+
+    .cart-items p {
+        display: inline;
+    }
+
+    .cart-items img {
+        border-radius: 3px;
+    }
+
+    .form-shipping-info {
+        display:flex;
+        justify-content:space-between;
+    }
+
+    .form-shipping-info input {
+        width:30%;
+        margin:0 5px;
+    }
+
+    .error-message {
+        margin:20px 0;
+        text-transform: uppercase;
+        font-weight: bold;
+        font-size: 32px;
+    }
+    
+    .pointer p{
+        color: black;
+    }
+
+    .pointer:hover {
+        cursor:pointer;
+        background-color:rgba(0,0,0,0.2);
+    }

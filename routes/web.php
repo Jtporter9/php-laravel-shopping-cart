@@ -1,36 +1,49 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
 use App\Product;
 
-Route::get('/', function () {
-    return view('welcome');
+//Products
+Route::get('/products', 'ProductsController@index');
+
+Route::get('/products/create', 'ProductsController@create');
+
+Route::get('/products/delete', 'ProductsController@showDelete');
+
+Route::get('/products/{product}', 'ProductsController@show');
+
+Route::post('/products', 'ProductsController@store');
+
+Route::delete('/products/delete/{product}', ['uses' => 'ProductsController@delete', 'as' => 'products.delete']);
+
+Route::get('/products/addToCart/{product}', 'ProductsController@setCartItem');
+
+//Cart
+Route::get('/cart', 'CartController@index');
+
+Route::get('/cart/removeCartItem/{product}', 'CartController@removeCartItem');
+
+Route::get('/cart/addCartItem/{product}', 'CartController@addCartItem');
+
+Route::post('/confirmation', 'CartController@checkout');
+
+//Admin
+Route::get('/admin', function(){
+    //Counter
+        if(Session::get('cart.items'))
+            $counter = count(Session::get('cart.items'));
+        else 
+            $counter = 0;
+    //Counter
+    return view('admin.index', compact('counter'));
 });
 
-Route::get('/products', function () {
+//Orders
+Route::get('/orders', 'OrdersController@index');
 
-    //$products = DB::table('products')->get();
-    $products = Product::all();
+Route::get('/orders/{order}', 'OrdersController@show');
 
-    return view('products.index', compact('products'));
-});
 
-Route::get('/products/{product}', function ($id) {
-    
-        //$product = DB::table('products')->find($id);
-        $product = Product::find($id);
 
-        return view('products.view', compact('product'));
-        
-    });
-    
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
