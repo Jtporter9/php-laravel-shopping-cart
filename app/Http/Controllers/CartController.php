@@ -6,6 +6,7 @@ use App\Payment;
 use App\Shipping;
 use App\OrderedProduct;
 use App\Order;
+use App\Mail\OrderProcessed;
 use Illuminate\Http\Request;
 use Mail;
 use Session;
@@ -58,42 +59,8 @@ class CartController extends Controller
         $shipping = $this->storeShipping();
         $order = $this->storeOrder($payment, $shipping);
         $this->storeOrderedProducts($products, $order);
-        
-        //Trying to send an email
-        $headers =  'MIME-Version: 1.0' . "\r\n"; 
-        $headers .= 'From: Hot Suace Saucey Sauce <jtporter9@gmail.com>' . "\r\n";
-        $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n"; 
 
-        $to = request('email');
-        $subject = "Thank you for your Saucey Purchase";
-
-        $message = "Thank you for your purchase! The following info was submitted\n\n Total: "
-        . request('total') ."\nName: "
-        . request('name') ."\nShipping Address: "
-        . request('addresss') ."\nCity: "   
-        . request('city') ."\nState: "
-        . request('state') ."\nZip Code: "
-        . request('zip');
-    // SEND THE EMAIL 
-        $email = mail($to, $subject, $message, $headers);  
-        
-        if ($foo)
-        {
-            echo "sent";
-        }
-        else {
-            echo "failed";
-        }
-
-        // $data = [
-        //     'key'     => 'value'
-        // ];
-
-        // Mail::send(['text'=>'cart.email'], $data, function ($message) {
-        //     $message->from('jtporter9@gmail.com', "Tanner Porter");
-        //     $message->subject('Your Sauce Purcahse');
-        //     $message->to(request('email'));
-        // });
+        \Mail::to(request('email'))->send(new OrderProcessed($request->input(), $products));
 
         Session::pull('cart.items', 'default');
         //Clears Session Storage and Cart

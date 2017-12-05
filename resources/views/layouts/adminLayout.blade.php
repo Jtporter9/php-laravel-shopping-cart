@@ -14,6 +14,19 @@
 
     </head>
     <body>
+    <?php
+        // Username and password for authentification
+        $username = 'admin';
+        $password = 'password';
+
+        if (!isset($_SERVER['PHP_AUTH_USER']) || !isset($_SERVER['PHP_AUTH_PW']) ||
+        ($_SERVER['PHP_AUTH_USER']) != $username || ($_SERVER['PHP_AUTH_PW']) != $password) {
+        header('HTTP/1.1 401 Unauthorized');
+        header('WWW-Authenticate: Basic realm="Up2Date"');
+        exit('<h2>Incorrect username and or password</h2>');
+        };
+        
+        ?>
 
         <header>
             <div class="flex-center position-ref">
@@ -23,12 +36,11 @@
                     </div>
 
                     <div class="links">
-                        <a href="/products">Products</a>
+                        <a href="/products">Client Side</a>
                         <a href="/admin">Admin</a>
                         <a href="/products/create">Add a Product</a>
                         <a href="/products/delete">Delete a Product</a>
                         <a href="/orders">View Orders</a>
-
                     </div>
                 </div>
             </div>

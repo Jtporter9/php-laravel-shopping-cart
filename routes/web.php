@@ -43,7 +43,6 @@ Route::get('/orders', 'OrdersController@index');
 Route::get('/orders/{order}', 'OrdersController@show');
 
 
-
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
